@@ -28,10 +28,10 @@ void printList (node *node)
     cout<<"\n\n";
 }
 
-void removeCopies(struct node *start)
+void removeCopies(node *head)
 {
   struct node *temp, *aux, *dup;
-  temp = start;
+  temp = head;
 
   while(temp!= NULL)
   {
@@ -54,7 +54,7 @@ void removeCopies(struct node *start)
   }
 
   cout<<"\n The Modified list is:\n";
-  printList(start);
+  printList(head);
 }
 
 

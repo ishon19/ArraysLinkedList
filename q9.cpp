@@ -22,31 +22,41 @@ void printList (node *node)
 {
     while (node != NULL)
     {
-        cout<<"\n"<<node->data;
+        cout<<node->data<<"-->";
         node = node->next;
     }
+    cout<<"\n\n";
 }
 
-void removeCopies(node *head)
+void removeCopies(struct node *start)
 {
-  node *temp = head;
-  node *aux = head;
-  node *auxi = NULL;
-  int x = head->next->data;
-  while(head!=NULL)
-  {
+  struct node *temp, *aux, *dup;
+  temp = start;
 
-      head = head->next;
-  }
-  while(aux!=NULL)
+  while(temp!= NULL)
   {
-      add(&auxi,aux->data);
-      aux = aux->next;
+     aux = temp;
+     while(aux->next != NULL)
+     {
+       if(temp->data == aux->next->data)
+       {
+          dup = aux->next;
+          aux->next = aux->next->next;
+          free(dup);
+       }
+       else
+       {
+          aux = aux->next;
+            
+       }
+     }
+     temp = temp->next;
   }
-  head = auxi;
-  cout<<"\n Modified List is:\n";
-  printList(head);
+
+  cout<<"\n The Modified list is:\n";
+  printList(start);
 }
+
 
 int main()
 {
@@ -59,6 +69,7 @@ int main()
     add(&head, 45);
     add(&head, 16);
     add(&head, 16);
+    add(&head, 67);
     cout <<"\nThe Linked List, for now is:\n";
     printList(head);
     removeCopies(head);
